@@ -1,5 +1,6 @@
 import unittest
 
+from python.constants import MIN_QUALITY
 from python.gilded_rose import Standard, Item
 
 class StandardTest(unittest.TestCase):
@@ -14,11 +15,11 @@ class StandardTest(unittest.TestCase):
         self.assertEqual(expected_sell_in, item.item.sell_in)
         self.assertEqual(expected_quality, item.item.quality)
 
-    def test_item_quality_does_not_go_below_zero(self):
+    def test_item_quality_does_not_go_below_min_quantity(self):
         # arrange the test
         item = Standard(Item("Standard Item", 10, 0))
         expected_sell_in = 9
-        expected_quality = 0
+        expected_quality = MIN_QUALITY
         # act
         item.update()
         # assert

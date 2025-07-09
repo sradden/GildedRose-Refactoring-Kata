@@ -82,3 +82,19 @@ class Standard(UpdatableItem):
             self.item.quality -= 1
         # quality cannot be negative
         self.item.quality = max(MIN_QUALITY, self.item.quality)
+
+class BackstagePass(UpdatableItem):
+    # increases in quality as the concert date approaches but drops to 0 after the concert.
+    # The closer the concert date, the more it increases in quality (cannot exceed 50).
+    def update(self):
+        self.item.sell_in -= 1
+        if self.item.sell_in < 0:
+            self.item.quality = 0
+        elif self.item.sell_in <= 5:
+            self.item.quality += 3
+        elif self.item.sell_in <= 10:
+            self.item.quality += 2
+        else:
+            self.item.quality += 1
+        # ensure quality does not exceed MAX_QUALITY
+        self.item.quality = min(MAX_QUALITY, self.item.quality)

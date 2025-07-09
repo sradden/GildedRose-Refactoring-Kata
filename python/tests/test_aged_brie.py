@@ -1,4 +1,6 @@
 import unittest
+
+from python.constants import MAX_QUALITY
 from python.gilded_rose import AgedBrie, Item
 
 class AgedBrieTest(unittest.TestCase):
@@ -10,9 +12,9 @@ class AgedBrieTest(unittest.TestCase):
         self.assertEqual(expected_quality, item.item.quality)
         self.assertEqual(expected_sell_in, item.item.sell_in)
 
-    def test_quality_does_not_exceed_fifty(self):
+    def test_quality_does_not_exceed_max_quality(self):
         item = AgedBrie(Item("Aged Brie", 2, 50))
-        expected_quality = item.item.quality
+        expected_quality = MAX_QUALITY
         item.update()
         self.assertEqual(expected_quality, item.item.quality)
 
