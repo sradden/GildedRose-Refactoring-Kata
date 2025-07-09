@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from python.constants import SULFURAS_QUALITY, MAX_ITEM_QUALITY
+
 
 class GildedRose(object):
 
@@ -44,3 +46,29 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+# As per requirements, Item class cannot be modified so we can implement a strategy to allow items to manage their own
+# quality. This has the added benefit of supporting future items without needing to modify the GildedRose class,
+# adhering to the Open Close principle to allow for
+class UpdatableItem:
+    def __init__(self, item: Item):
+        self.item = item
+
+    def update(self):
+        raise NotImplementedError
+
+class Sulfuras(UpdatableItem):
+    def update(self):
+        # Sulfuras attributes do not change
+        # throw AssertionError when quality is not 80
+        assert self.item.quality == SULFURAS_QUALITY, f"Sulfuras quality should always be {SULFURAS_QUALITY}"
+
+class AgedBrie(UpdatableItem):
+    def update(self):
+        self.item.sell_in -= 1
+        self.item.quality += 1
+        # GildedRoseRequirements.md states that Aged Brie increases in quality the older it gets,
+        # However, looking at the test approvals it seems that once the sell_in has passed, it increases by 2
+        if self.item.sell_in < 0:
+            self.item.quality += 1
+        self.item.quality = max(MAX_ITEM_QUALITY, self.item.quality)
