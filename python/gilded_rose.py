@@ -71,4 +71,4 @@ class AgedBrie(UpdatableItem):
         # However, looking at the test approvals it seems that once the sell_in has passed, it increases by 2
         if self.item.sell_in < 0:
             self.item.quality += 1
-        self.item.quality = max(MAX_ITEM_QUALITY, self.item.quality)
+        self.item.quality = min(MAX_ITEM_QUALITY, self.item.quality)
