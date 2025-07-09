@@ -2,7 +2,25 @@
 
 For exercise instructions see [top level README](../README.md)
 
-Suggestion: create a python virtual environment for this project. See the [documentation](https://docs.python.org/3/library/venv.html)
+Suggestion: create a python virtual environment for this project by navigating to the `python` directory and running:
+
+- On MacOS/Linux:
+```
+python3 -m venv venv
+```
+
+Then activate the virtual environment:
+
+- On MacOS/Linux:
+  ```
+  source venv/bin/activate
+  ```
+
+Install the dependencies:
+
+```
+pip install -r requirements.txt
+```
 
 ## Run the unit tests from the Command-Line
 
