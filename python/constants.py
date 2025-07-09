@@ -1,3 +1,4 @@
 # define project constants here
-MAX_ITEM_QUALITY: int = 50
+MAX_QUALITY: int = 50
+MIN_QUALITY: int = 0
 SULFURAS_QUALITY: int = 80

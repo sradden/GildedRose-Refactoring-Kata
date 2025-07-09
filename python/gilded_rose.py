@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from python.constants import SULFURAS_QUALITY, MAX_ITEM_QUALITY
+from python.constants import SULFURAS_QUALITY, MAX_QUALITY, MIN_QUALITY
 
 
 class GildedRose(object):
@@ -71,4 +71,14 @@ class AgedBrie(UpdatableItem):
         # However, looking at the test approvals it seems that once the sell_in has passed, it increases by 2
         if self.item.sell_in < 0:
             self.item.quality += 1
-        self.item.quality = min(MAX_ITEM_QUALITY, self.item.quality)
+        self.item.quality = min(MAX_QUALITY, self.item.quality)
+
+class Standard(UpdatableItem):
+    def update(self):
+        self.item.sell_in -= 1
+        self.item.quality -= 1
+        # If the sell_in has passed, the quality decreases by 2
+        if self.item.sell_in < 0:
+            self.item.quality -= 1
+        # quality cannot be negative
+        self.item.quality = max(MIN_QUALITY, self.item.quality)
