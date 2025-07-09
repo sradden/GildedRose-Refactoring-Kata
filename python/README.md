@@ -25,7 +25,13 @@ pip install -r requirements.txt
 ## Run the unit tests from the Command-Line
 
 ```
-python tests/test_gilded_rose.py
+python -m pytest
+```
+
+### Run a specific test
+
+```
+python -m pytest tests/test_gilded_rose.py
 ```
 
 ## Run the TextTest fixture from the Command-Line
