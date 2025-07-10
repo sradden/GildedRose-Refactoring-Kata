@@ -14,3 +14,6 @@ class SulfurasTest(unittest.TestCase):
         item = Sulfuras(Item("Sulfuras, Hand of Ragnaros", 0, 79))
         with self.assertRaises(AssertionError):
             item.update()
+
+    if __name__ == '__main__':
+        unittest.main()

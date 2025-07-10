@@ -61,3 +61,15 @@ python tests/test_gilded_rose_approvals.py
 ```
 
 You will need to approve the output file which appears under "approved_files" by renaming it from xxx.received.txt to xxx.approved.txt.
+
+## Assumptions
+The following list of assumptions have been made in the implementation of this project:
+- An [Item] name is case-insensitive, so "Aged Brie" and "aged brie" are considered the same item.
+- The type of an item is determined by its name, so "Aged Brie" is always an aged brie item, "Sulfuras" is always a Sulfuras item, etc. This will have to be changed if we want to support items with the same name but different types, for example "Aged Brie" and "Aged Brie (vintage)".
+
+## Future Improvements
+- Add support for items with the same name but different types, for example "Aged Brie" and "Aged Brie (vintage)".
+- Add type hints to the code to make it more readable and maintainable.
+- Make [UpdatableItem] an abstract class to make the code more readable and maintainable.
+- Add check constraints to the [Item] class to ensure that the `Quality` values passed during init are within the allowed ranges. For example, `Quality` should be between `0` and `50` but at the moment `Standard(Item("foo", 5, 53))` is valid.
+- Move [UpdatableItem] subclasses to a separate module to make the code more modular and maintainable.
