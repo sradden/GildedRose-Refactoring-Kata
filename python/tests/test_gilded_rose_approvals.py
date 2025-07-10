@@ -2,7 +2,11 @@ import io
 import sys
 
 from approvaltests import verify
-from texttest_fixture import main
+from python.texttest_fixture import main
+from approvaltests.reporters import set_default_reporter
+from approvaltests.reporters import PythonNativeReporter
+
+set_default_reporter(PythonNativeReporter())
 
 def test_gilded_rose_approvals():
     orig_sysout = sys.stdout

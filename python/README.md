@@ -22,7 +22,7 @@ Install the dependencies:
 pip install -r requirements.txt
 ```
 
-## Run the unit tests from the Command-Line
+## Run the unit tests from the Command-Line within project root
 
 ```
 python -m pytest
@@ -52,6 +52,10 @@ There are instructions in the [TextTest Readme](../texttests/README.md) for sett
     executable:${TEXTTEST_HOME}/python/texttest_fixture.py
     interpreter:python
 
+```
+./start_texttest.sh
+```
+
 ## Run the ApprovalTests.Python test
 
 This test uses the framework [ApprovalTests.Python](https://github.com/approvals/ApprovalTests.Python). Run it like this:
@@ -66,6 +70,7 @@ You will need to approve the output file which appears under "approved_files" by
 The following list of assumptions have been made in the implementation of this project:
 - An [Item] name is case-insensitive, so "Aged Brie" and "aged brie" are considered the same item.
 - The type of an item is determined by its name, so "Aged Brie" is always an aged brie item, "Sulfuras" is always a Sulfuras item, etc. This will have to be changed if we want to support items with the same name but different types, for example "Aged Brie" and "Aged Brie (vintage)".
+- The text tests failed once i implemented [Conjured] because this was not part of the original requirements. The text tests were updated to include the new item type and its behavior.
 
 ## Future Improvements
 - Add support for items with the same name but different types, for example "Aged Brie" and "Aged Brie (vintage)".
